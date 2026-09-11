@@ -1,0 +1,854 @@
+---
+title: "DSCI 521 Milestone 2"
+subtitle: "Create and publish your personal website"
+format:
+  html:
+    toc: true
+---
+
+See the [assessment table](../index.qmd#assessments) on the home page
+for the weight,
+due date,
+and where to submit.
+
+## What you are doing
+
+This is where your real project repository starts.
+Milestone 1 was a practice run in a throwaway folder.
+Do not reuse your `DSCI_521-milestone_1` folder for this milestone,
+and do not create this repository inside it.
+You are starting fresh.
+
+By the end of this milestone you will have:
+
+1. A public repository on github.com named `username.github.io`.
+2. A Quarto website in that repository,
+   live on the internet at `https://username.github.io`.
+3. A home page with a photo and a short description of yourself.
+4. An about page that introduces you in more detail.
+5. Your first blog post,
+   about your first weeks in the MDS program.
+
+Everywhere you see `username` in this milestone,
+replace it with your own github.com username.
+
+This website is the start of your professional portfolio.
+You will add to it every week for the rest of this course,
+and you can keep building on it after MDS.
+Milestone 3 adds two more posts to it,
+so it is worth setting up carefully now.
+
+:::{.callout-important}
+## You do not have to publish anything personal
+
+This milestone asks you to introduce yourself.
+That makes a nice introduction to the other students and to your instructors,
+and it is a foundation for the professional portfolio
+you will build throughout MDS.
+
+You do not have to do it that way.
+You can build the site on any other topic instead,
+as long as it meets the same requirements:
+
+- A **home page** with an image and a short description of your topic.
+- An **about page** with more detail, in a few short sections.
+- One **post** of about three paragraphs with one captioned image.
+  Write about anything you like.
+- A **site title** in `_quarto.yml`,
+  which can be the name of your topic rather than your own name.
+
+If you go this way,
+read the steps below as being about your topic instead of about you.
+Nothing else changes.
+The repository,
+the Quarto site,
+GitHub Pages,
+and the commits are what this milestone is really about,
+and none of that depends on the topic.
+:::
+
+Everything here comes from the Week 1 and Week 2 lectures.
+Each step below links to the part of the textbook that covers it.
+
+- [Lecture 2: Introduction to version control with Git and GitHub](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/git-github-ssh-basic-workflow.html)
+- [Lecture 3: Introduction to Quarto and GitHub Pages](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html)
+
+:::{.callout-note}
+## If you already have a `username.github.io` website
+
+If you already have a website running at `https://username.github.io`,
+you have two options:
+
+1. Replace it with the website you build in this course.
+2. Keep it,
+   and create a separate repository named `mds-website` for this course/program.
+   Your course website will then be at `https://username.github.io/mds-website`.
+   Submit this URL when we refer to the `username.github.io` repository.
+
+In either case,
+you still have to submit a website that is live on GitHub Pages,
+with every page and post this course asks for.
+
+If you pick option 2,
+replace `username.github.io` with `mds-website` everywhere below,
+and use `https://username.github.io/mds-website` as your site URL
+for submission and grading.
+:::
+
+## Read this before you start
+
+Two things catch people every year:
+
+- Your repository has to be **public**.
+  GitHub Pages does not build private repositories on a free account,
+  and we cannot grade what we cannot see.
+- Your website has to be **live at its URL by the deadline**.
+  Pushing your files is not enough.
+  GitHub takes a minute or two to build the site after each push,
+  so do not leave your final push to the last minute.
+
+Commit as you go.
+We want to see at least three commits across this milestone,
+not one big commit at the end.
+Good moments to commit are after Step 3,
+after Step 5,
+and after Step 6.
+
+This is a public website.
+Do not put anything on it you would not want a stranger,
+a future employer,
+or a search engine to see.
+
+
+## Step 1: Create the repository
+
+Textbook:
+
+- [Creating a Repository](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/git-github-ssh-basic-workflow.html#creating-a-repository)
+- [Special github repository names](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#special-github-repository-names)
+
+You are creating this repository on the public GitHub,
+not on the UBC GitHub.
+
+- Use <https://github.com>
+- Do **not** use <https://github.ubc.ca>
+
+If you do not have a github.com account yet,
+create one first.
+This milestone is also how we confirm your github.com username works,
+since you will use it for the rest of the program.
+
+The repository name matters here.
+GitHub treats a repository named `username.github.io` specially:
+it publishes the website at `https://username.github.io`,
+with nothing after the slash.
+That only works if the name matches your username exactly.
+
+1. Log in to <https://github.com>.
+2. Click the **+** button in the top right,
+   then **New repository**.
+3. Set **Repository name** to `username.github.io`,
+   with `username` replaced by your github.com username.
+   For example,
+   if your username is `octocat`,
+   the repository name is `octocat.github.io`.
+   Use lowercase.
+4. Under **Visibility**, choose **Public**.
+5. Check **Add a README file**.
+6. Click **Create repository**.
+
+### Your repository must be public
+
+We can only see and grade work that is public,
+and GitHub Pages will not build a private repository on a free account.
+A private repository is marked as missing.
+
+To check:
+
+1. Go to your repository page on github.com.
+2. Look at the label next to the repository name at the top.
+   It should say `Public`.
+
+If it says `Private`:
+
+1. Go to **Settings**.
+2. Scroll to the bottom,
+   to the **Danger Zone**.
+3. Click **Change visibility**,
+   then **Change to public**.
+
+Another way to check:
+copy your repository URL,
+open a private or incognito browser window,
+and paste it in.
+If the page loads while you are logged out,
+your repository is public.
+
+
+## Step 2: Clone the repository
+
+Textbook:
+
+- [SSH key setup](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/git-github-ssh-basic-workflow.html#tldr-ssh-key-setup)
+- [Cloning repositories from GitHub](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/git-github-ssh-basic-workflow.html#cloning-repositories-from-github)
+- [What is a Git repository?](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/git-github-ssh-basic-workflow.html#what-is-a-git-repository)
+
+Your SSH key for github.com was set up in lecture 2.
+Use it here.
+
+1. On your repository page,
+   click the green **Code** button.
+2. Choose **SSH** and copy the URL.
+3. Open your terminal and `cd` to the folder where you keep your MDS work,
+   for example your `521` folder from Milestone 1.
+4. Clone the repository:
+
+   ```bash
+   git clone git@github.com:username/username.github.io.git
+   ```
+
+5. Move into the folder:
+
+   ```bash
+   cd username.github.io
+   ```
+
+6. Check that you are in a Git repository:
+
+   ```bash
+   ls -a
+   ```
+
+   You should see a `.git` folder and your `README.md` in the listing.
+
+Do not clone this repository inside another Git repository,
+and do not clone it inside your `DSCI_521-milestone_1` folder.
+
+
+## Step 3: Create the Quarto website
+
+Textbook:
+
+- [Your first Quarto website](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#your-first-quarto-website)
+- [Tweaking your website](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#tweaking-your-website)
+- [Finding what you need in the Quarto documentation](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#quarto-docs)
+- [Rendering your website](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#rendering-your-website)
+- [Turning off Jekyll with `.nojekyll`](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#nojekyll)
+
+From inside your repository folder,
+run:
+
+```bash
+quarto create project website . --no-open
+```
+
+The `.` means "put the project in the folder I am in".
+Quarto creates four files next to your `README.md`:
+
+```
+_quarto.yml
+about.qmd
+index.qmd
+styles.css
+```
+
+Before you render anything,
+set up three things.
+
+1. Tell Quarto to render into a folder named `docs`.
+   That is the folder GitHub Pages can publish from.
+   Open `_quarto.yml` and add the `output-dir` line,
+   so the top of the file reads:
+
+   ```yaml
+   project:
+     type: website
+     output-dir: docs
+   ```
+
+   If you already ran `quarto preview` or `quarto render` before adding this line,
+   delete the `_site` folder it made with `rm -r _site`.
+
+2. Plan for the `.nojekyll` file.
+   GitHub runs a tool called Jekyll on every site by default,
+   and it can break a Quarto site.
+   An empty file named `.nojekyll` in the folder GitHub publishes from
+   (`docs` in our case) turns it off.
+   The textbook covers this in
+   [Turning off Jekyll with `.nojekyll`](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#nojekyll).
+
+   There are two ways to get it there.
+   Pick one:
+
+   - **By hand, after every render.**
+     `quarto render` empties `docs` before it fills it again,
+     so a file you put in `docs` by hand is gone after the next render.
+     If you go this way,
+     run `touch docs/.nojekyll` after every `quarto render`
+     and before you commit.
+     Step 7 has this in the right order.
+   - **Once, at the top level.**
+     Run `touch .nojekyll` at the top level of the repository.
+     Quarto copies it into `docs` every time you render,
+     so you only create it once.
+
+   Either way,
+   what we check is that `docs/.nojekyll` is on github.com.
+
+3. Render your website with `quarto render`
+
+:::{.callout-note}
+## Not all the files will exist
+
+Depending on how you are rendering your website, when you are rendering the website,
+what computer operating system you are on,
+when you run `git status` and/or `ls -a` you may or may not see some of the files
+we are referring to.
+What is important is the files we are asking you to ignore do not make it in the final
+github.com repository.
+:::
+
+4. Keep Quarto's cache and other clutter out of Git.
+   Quarto makes a `.quarto` folder when it renders.
+   macOS makes `.DS_Store` files when you open a folder in Finder.
+   An early render may have made a `_site` folder.
+   None of these belong on GitHub.
+
+   We cover ignore files in a later class.
+   Until then there are three ways to handle this.
+   Each one works.
+   Pick the one you can do consistently:
+
+   - **Leave them alone,
+     and stage files by name.**
+     Do nothing to the files.
+     They sit in `git status` as untracked,
+     and you never stage them:
+
+     ```bash
+     git add index.qmd about.qmd docs
+     ```
+
+     *Pro:* nothing to remember to delete,
+     and you never lose Quarto's cache,
+     so renders stay fast.
+     *Con:* `git status` is always noisy,
+     so a real change is easy to miss,
+     and a single `git add .` checks everything in at once.
+     Never run `git add .` if you go this way.
+   - **Delete them before every commit.**
+     Run `git status`,
+     and delete anything on that list that does not belong:
+
+     ```bash
+     rm -r .quarto
+     ```
+
+     Do the same for `_site` and any `.DS_Store` files that show up.
+
+     *Pro:* `git status` stays clean,
+     so it is easy to read,
+     and `git add .` is safe.
+     *Con:* you have to do it after every render,
+     because `quarto render` makes `.quarto` again,
+     and deleting the cache makes the next render slower.
+   - **Create an ignore file.**
+     Git can be told to skip a set of files every time you `git add`.
+     We cover ignore files in a later class,
+     so you are not expected to use this method yet.
+
+     *Pro:* you set it up once and it keeps working,
+     `git status` stays clean,
+     and you keep the cache.
+     *Con:* we have not covered it yet,
+     so you are on your own to look up how ignore files work,
+     and a wrong pattern can silently hide a file you meant to commit.
+
+   Whichever you pick,
+   if one of these files is already staged,
+   take it back out of the staging area before you commit.
+   Run `git status`:
+   Git prints the command for unstaging a file
+   right there in the output.
+   Git tries to help you.
+   Reading output and documentation
+   is one of the skills this course is teaching you.
+
+   All three ways get you to the same place,
+   and what we check is that none of `.quarto`,
+   `_site`,
+   or `.DS_Store` are on github.com.
+   Checking them in costs marks.
+
+Now preview the site:
+
+```bash
+quarto preview
+```
+
+Your browser opens with the template website.
+Leave that terminal running while you edit.
+Every time you save a file,
+the site re-renders and the browser refreshes.
+Open a second terminal window for your `git` commands,
+or stop the preview with <kbd>Ctrl</kbd> + <kbd>c</kbd> when you need the terminal back.
+
+This is a good point for your first commit.
+See [Step 7](#step-7-render-commit-and-push) for the commands.
+
+
+## Step 4: The home page
+
+Textbook: [Naming guidelines](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/mdstools-bash-filesystem.html#naming-guidelines)
+
+The home page is `index.qmd`.
+It is what a visitor sees when they open `https://username.github.io`.
+It needs a photo and a short description of who you are.
+
+1. Make a folder for your images at the top level of the repository:
+
+   ```bash
+   mkdir images
+   ```
+
+2. Put a photo in it.
+   Use the terminal to move the file,
+   for example `mv ~/Downloads/profile.jpg images/`.
+   Give the file a name with no spaces in it.
+
+   It does not have to be a photo of your face.
+   Any picture that represents you is fine,
+   such as a place you love,
+   a hobby,
+   or a drawing.
+   Remember that this site is public.
+
+3. Open `index.qmd` and replace its contents:
+
+   - Change the `title` in the YAML header to your name.
+   - Add your photo:
+
+     ```markdown
+     ![](images/profile.jpg){width=250px}
+     ```
+
+   - Below the photo,
+     add a short introduction.
+     Start from the paragraph you wrote in your Milestone 1 `README.md`,
+     and improve it.
+     Three or four sentences is plenty.
+     Say where you came from,
+     what you did before MDS,
+     and what you are hoping to do next.
+
+4. Open `_quarto.yml` and change the website `title` to your name too.
+   It shows up in the navigation bar on every page.
+
+Write this for a stranger who lands on your site and wonders who you are.
+It is the first thing a future employer or collaborator will read.
+
+:::{.callout-tip}
+## Optional: use a Quarto about-page layout
+
+Quarto has built-in layouts that put a photo and text side by side.
+Instead of the `![]()` line,
+add this to the YAML header of `index.qmd`:
+
+```yaml
+about:
+  template: jolla
+  image: images/profile.jpg
+```
+
+There are five templates to pick from.
+See [Quarto: About Pages](https://quarto.org/docs/websites/website-about.html).
+This is optional.
+A plain image and paragraph is fine.
+:::
+
+
+## Step 5: The about page
+
+The home page is the short version of who you are.
+The about page is the longer version.
+
+Open `about.qmd` and write a few short sections about yourself.
+Use `##` headings to break them up.
+For example:
+
+- **Background**:
+  where you grew up or studied,
+  and what you worked on before MDS.
+- **Why data science**:
+  what brought you to the program.
+- **Outside of data science**:
+  hobbies,
+  sports,
+  music,
+  food,
+  what you do on a weekend.
+
+A few short paragraphs is enough.
+Do not copy your home page paragraph again.
+Say something new here.
+
+
+## Step 6: Your first blog post
+
+Textbook: [Finding what you need in the Quarto documentation](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#quarto-docs)
+
+That section maps the topics this step uses
+onto the pages of the Quarto documentation that explain them:
+listing pages,
+figures and captions,
+and markdown basics.
+Looking things up there is part of the exercise.
+
+Write a post about your first weeks in MDS.
+Orientation,
+the first week of classes,
+what surprised you,
+how you are feeling now.
+
+Keep it short.
+The cap is **about three paragraphs and one image**.
+The point of this post is to get publishing working,
+not to write an essay.
+Milestone 3 has room for longer posts.
+
+1. Make a folder for the post.
+   Each post gets its own folder inside `posts`:
+
+   ```bash
+   mkdir posts
+   mkdir posts/first-weeks
+   ```
+
+2. Create `posts/first-weeks/index.qmd`.
+   Start it with this YAML header,
+   then write your three paragraphs below it:
+
+   ```yaml
+   ---
+   title: "My first weeks in MDS"
+   author: "Your Name"
+   date: 2026-09-10
+   ---
+   ```
+
+   Set `date` to the day you write the post.
+
+3. Add one image with a caption.
+   Put the image file in the same `posts/first-weeks` folder as the post,
+   then add it to the post like this:
+
+   ```markdown
+   ![Orientation day on campus.](orientation.jpg)
+   ```
+
+   The text in the square brackets is the caption.
+   It shows up under the image.
+
+4. Create the page that lists your posts.
+   Make a file named `blog.qmd` at the top level of the repository,
+   with exactly this in it:
+
+   ```yaml
+   ---
+   title: "Blog"
+   listing:
+     contents: posts
+     sort: "date desc"
+   ---
+   ```
+
+   Nothing else goes in the file.
+   Quarto fills the page with every post it finds in `posts`,
+   newest first.
+   The posts you write in Milestone 3 will show up here on their own.
+
+5. Add the about page and the blog page to the navigation bar.
+   In `_quarto.yml`,
+   make the `website` section look like this:
+
+   ```yaml
+   website:
+     title: "Your Name"
+     navbar:
+       left:
+         - href: index.qmd
+           text: Home
+         - href: about.qmd
+           text: About
+         - href: blog.qmd
+           text: Blog
+   ```
+
+6. Check the preview in your browser.
+   Click **Home**, **About**, and **Blog**.
+   The Blog page should list your post,
+   the post should open,
+   and both images should show.
+
+:::{.callout-important}
+## Photos of other people
+
+If classmates,
+friends,
+or anyone else is recognizable in a photo,
+ask them before you publish it.
+This is a public website that anyone can find.
+If they say no,
+or you cannot ask them,
+use a different photo.
+:::
+
+
+## Step 7: Render, commit, and push
+
+Textbook:
+
+- [Adding and committing changes](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/git-github-ssh-basic-workflow.html#adding-committing-changes-to-version-controlled-files)
+- [Commit your files](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/git-github-ssh-basic-workflow.html#commit-your-files)
+- [Push local changes to GitHub](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/git-github-ssh-basic-workflow.html#push-local-changes-to-github)
+- [Github Pages and Quarto](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#github-pages-and-quarto)
+
+The `docs` folder is the website.
+GitHub Pages serves the `.html` files inside it.
+We normally keep generated files out of Git,
+but this is the exception:
+if `docs` is not on GitHub,
+there is no website.
+
+1. Stop the preview with <kbd>Ctrl</kbd> + <kbd>C</kbd>.
+2. Render the whole site from scratch:
+
+   ```bash
+   quarto render
+   ```
+
+3. If you create `.nojekyll` by hand,
+   do it now:
+
+   ```bash
+   touch docs/.nojekyll
+   ```
+
+   Skip this if you keep `.nojekyll` at the top level.
+   Quarto has already copied it in.
+
+4. Check that `docs` has what you expect:
+
+   ```bash
+   ls -a docs
+   ```
+
+   You should see `.nojekyll`,
+   `index.html`,
+   `about.html`,
+   `blog.html`,
+   a `posts` folder,
+   and an `images` folder.
+
+5. Look before you stage:
+
+   ```bash
+   git status
+   ```
+
+   Deal with anything in that list that does not belong in the repository:
+   delete it,
+   unstage it,
+   untrack it,
+   or leave it untracked and stage by name,
+   whichever fits the way you picked in Step 3.
+   Git names the command for each of these in its own output.
+   Run `git status` again until you are happy with what is about to go in.
+
+6. Stage, commit, and push:
+
+   ```bash
+   git add .
+   git commit -m "render site"
+   git push origin main
+   ```
+
+7. Check your work:
+
+   - **The repository on github.com.**
+     Reload the page.
+     The `docs` folder is there,
+     with `index.html` and `.nojekyll` inside it,
+     and none of `.quarto`,
+     `_site`,
+     or `.DS_Store` are anywhere in the repository.
+
+   If you cannot see a file on github.com,
+   it is not submitted.
+
+:::{.callout-warning}
+## If `.quarto` is already on github.com
+
+Deleting the folder on your computer is not enough once Git is tracking it.
+Tell Git to stop tracking it,
+then commit and push:
+
+```bash
+git rm -r --cached .quarto
+git commit -m "remove quarto cache"
+git push origin main
+```
+
+Then go back to Step 3 and pick one of the three ways
+of keeping it out,
+so it does not come back.
+:::
+
+Use these same commands for the earlier commits too.
+Any file you have changed can go in a commit,
+even before the site is finished.
+
+Remember this order for the rest of the course.
+Every time you change the site:
+edit,
+`quarto render`,
+`touch docs/.nojekyll` if you create it by hand,
+`git status`,
+add,
+commit,
+`git push origin main`.
+If you push your `.qmd` files without rendering first,
+the website does not change.
+
+
+## Step 8: Turn on GitHub Pages
+
+Textbook: [Github Pages and Quarto](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/quarto-github-pages.html#github-pages-and-quarto)
+
+1. On your repository page,
+   click **Settings**.
+   This is the repository's settings,
+   not your account settings.
+2. In the left sidebar,
+   click **Pages**.
+3. Under **Build and deployment**,
+   set **Source** to **Deploy from a branch**.
+4. Under **Branch**,
+   choose `main`,
+   then change the folder from `/ (root)` to `/docs`.
+5. Click **Save**.
+6. Go back to the main page of your repository.
+   Next to the latest commit you will see an orange dot while GitHub builds the site,
+   then a green check mark when it is done.
+   This takes a minute or two.
+7. Open `https://username.github.io` in your browser.
+   Then open it again in a private or incognito window,
+   to see what a stranger sees.
+8. Click through **Home**, **About**, **Blog**, and your post.
+   Confirm that both images show on the live site,
+   not just in your local preview.
+
+If you get a **404** page:
+
+- Wait two minutes and refresh.
+  The first build is sometimes slow.
+- Check that the Pages settings saved with `main` and `/docs`.
+- Check that `docs/index.html` exists on github.com.
+- Check that the repository is public.
+- Check that the repository name is spelled exactly `username.github.io`,
+  with your real username.
+
+
+## Step 9: Submit
+
+Make a PDF that contains two URLs:
+
+1. Your repository:
+
+   ```
+   https://github.com/username/username.github.io
+   ```
+
+2. Your live website:
+
+   ```
+   https://username.github.io
+   ```
+
+Upload that PDF to Gradescope.
+
+Check that your repository URL starts with `github.com`.
+A `github.ubc.ca` link points at the wrong place and cannot be graded.
+
+
+## Before you submit, check
+
+- [ ] The repository is on github.com, not github.ubc.ca.
+- [ ] The repository is named `username.github.io`,
+      with your real username.
+- [ ] The repository is **Public**.
+- [ ] `_quarto.yml` has `output-dir: docs`.
+- [ ] `docs/.nojekyll` is on github.com.
+- [ ] `.quarto`, `_site`, and `.DS_Store` are **not** on github.com.
+      Check the file list on github.com,
+      not just your own computer.
+- [ ] The home page has a photo and your introduction.
+- [ ] The about page says more about you than the home page does.
+- [ ] The blog post is about three paragraphs,
+      has one image with a caption,
+      and you have permission from anyone in the photo.
+- [ ] The Blog page lists your post.
+- [ ] The navigation bar has Home, About, and Blog,
+      and every link works on the live site.
+- [ ] The `docs` folder is committed and visible on github.com.
+- [ ] The site is live at `https://username.github.io`,
+      and you checked it in a private browser window.
+- [ ] Both images show on the live site.
+- [ ] There are at least three commits.
+- [ ] No passwords,
+      phone numbers,
+      home address,
+      or other private information is on the site.
+- [ ] The PDF with both URLs is on Gradescope.
+
+
+## Grading
+
+| Item                                                                            | Marks  |
+|---------------------------------------------------------------------------------|--------|
+| Repository on github.com, named `username.github.io`, and public                 | 2      |
+| Website live at `https://username.github.io`, published from `docs`              | 5      |
+| Home page with a photo and your introduction                                     | 4      |
+| About page that introduces you in more detail                                    | 3      |
+| Blog post: about three paragraphs and one image with a caption                   | 5      |
+| Blog listing page and navigation bar, with every link working                    | 2      |
+| `docs/.nojekyll` present, and no `.quarto`, `_site`, or `.DS_Store` on github.com | 2      |
+| At least three commits, and both URLs submitted to Gradescope                    | 2      |
+| **Total**                                                                        | **25** |
+
+## Optional extras
+
+None of these are graded.
+They are here if you want to go further.
+
+- **A projects page.**
+  If you have past work to show,
+  add a `projects.qmd` page and put it in the navigation bar.
+- **A real `README.md`.**
+  Describe what the repository is
+  and how to build the site with `quarto render`.
+  Milestone 3 requires build instructions,
+  so this is a head start.
+- **A different look.**
+  Change the `theme` in `_quarto.yml`.
+  The list of built-in themes is at
+  [Quarto: HTML Theming](https://quarto.org/docs/output-formats/html-themes.html).
+
+
+## If you get stuck
+
+Textbook: [Asking Effective Questions](https://ubc-mds.github.io/DSCI_521_platforms-dsci_book/lectures/asking-questions.html)
+
+Ask in the `521_platforms-dsci` Slack channel or come to office hours.
+Post the command you ran and the error message you got,
+not just "it did not work".
