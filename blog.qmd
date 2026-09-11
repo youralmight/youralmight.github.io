@@ -1,6 +1,6 @@
 ---
 title: "Blog"
 listing:
-  contents: blog_posts
+  contents: posts
   sort: "date desc"
 ---
