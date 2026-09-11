@@ -1,0 +1,20 @@
+---
+title: "DSCI 521 Milestone 2"
+format: pdf
+---
+
+Repository:
+
+<div style="font-family: monospace; font-size: 12pt">
+
+https://github.com/youralmight/youralmight.github.io
+
+</div>
+
+Live website:
+
+<div style="font-family: monospace; font-size: 12pt">
+
+https://youralmight.github.io
+
+</div>
