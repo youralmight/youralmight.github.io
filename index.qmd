@@ -2,6 +2,8 @@
 title: "Yi Zhang"
 ---
 
-This is a Quarto website.
+![](images/profile.png){width=250px}
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+I'm Yi Zhang, a Master of Data Science student at the University of British Columbia. Before MDS I studied computer science and worked in software. I'm here to learn how to turn data into insight, and I hope to build a career in data science.
+
+Outside of class, I like to play rhythm games.

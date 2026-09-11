@@ -2,4 +2,14 @@
 title: "About"
 ---
 
-About this site
+## Background
+
+I studied computer science and worked in software before joining the MDS program.
+
+## Why data science
+
+I'm interested in how data can answer real questions, and I want the skills to do that well.
+
+## Outside of data science
+
+When I'm not studying, I like to read and stay active.
