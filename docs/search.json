@@ -4,14 +4,35 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "My first weeks in Canada\n\n\n\n\n\n\n\n\nSep 11, 2026\n\n\nYi Zhang\n\n\n\n\n\nNo matching items"
+    "text": "Age of Empires IV: Tournament Results by Country\n\n\n\n\n\n\n\n\nSep 26, 2026\n\n\nYi Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nAge of Empires IV: Tournament Results by Country\n\n\n\n\n\n\n\n\nSep 26, 2026\n\n\nYi Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nMy first weeks in Canada\n\n\n\n\n\n\n\n\nSep 11, 2026\n\n\nYi Zhang\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Yi Zhang",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "I’m Yi Zhang, a Master of Data Science student at the University of British Columbia. Before MDS I studied computer science and worked in software. I’m here to learn how to turn data into insight, and I hope to build a career in data science.\nOutside of class, I like to play rhythm games."
+    "text": "I studied computer science and worked in software before joining the MDS program."
+  },
+  {
+    "objectID": "about.html#background",
+    "href": "about.html#background",
+    "title": "About",
+    "section": "",
+    "text": "I studied computer science and worked in software before joining the MDS program."
+  },
+  {
+    "objectID": "about.html#why-data-science",
+    "href": "about.html#why-data-science",
+    "title": "About",
+    "section": "Why data science",
+    "text": "Why data science\nI’m interested in how data can answer real questions, and I want the skills to do that well."
+  },
+  {
+    "objectID": "about.html#outside-of-data-science",
+    "href": "about.html#outside-of-data-science",
+    "title": "About",
+    "section": "Outside of data science",
+    "text": "Outside of data science\nWhen I’m not studying, I like to read and stay active."
   },
   {
     "objectID": "milestone2.html",
@@ -126,45 +147,73 @@
     "text": "If you get stuck\nTextbook: Asking Effective Questions\nAsk in the 521_platforms-dsci Slack channel or come to office hours. Post the command you ran and the error message you got, not just “it did not work”."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "I studied computer science and worked in software before joining the MDS program."
-  },
-  {
-    "objectID": "about.html#background",
-    "href": "about.html#background",
-    "title": "About",
-    "section": "",
-    "text": "I studied computer science and worked in software before joining the MDS program."
-  },
-  {
-    "objectID": "about.html#why-data-science",
-    "href": "about.html#why-data-science",
-    "title": "About",
-    "section": "Why data science",
-    "text": "Why data science\nI’m interested in how data can answer real questions, and I want the skills to do that well."
-  },
-  {
-    "objectID": "about.html#outside-of-data-science",
-    "href": "about.html#outside-of-data-science",
-    "title": "About",
-    "section": "Outside of data science",
-    "text": "Outside of data science\nWhen I’m not studying, I like to read and stay active."
-  },
-  {
-    "objectID": "blog_posts/blog0.html",
-    "href": "blog_posts/blog0.html",
-    "title": "Test first blogpost",
-    "section": "",
-    "text": "AAA"
-  },
-  {
     "objectID": "posts/blog0.html",
     "href": "posts/blog0.html",
     "title": "My first weeks in Canada",
     "section": "",
     "text": "Moving to Canada from mainland China, my first weeks were a string of small surprises. Everything I used to do without thinking — buying food, getting household things — suddenly needed planning. Nothing was wrong, just different, and it took time to find the local rhythm.\nShopping was the clearest example. Back home I had my go-to apps and stores; here I had to learn which kind of store to use for what, from groceries and Asian staples to electronics and tools. Delivery takes days instead of hours, and my first few orders were a mix of wrong guesses and happy discoveries.\nNow I have a simple routine: saved lists, weekly flyer checks for deals, and ordering online without much worry, because returns are easy. The first weeks were an adjustment, but today it just feels like home.\n\n\n\nA supermarket aisle — where most of my first weeks of exploring happened."
+  },
+  {
+    "objectID": "posts/aoe4-r/index.html",
+    "href": "posts/aoe4-r/index.html",
+    "title": "Age of Empires IV: Tournament Results by Country",
+    "section": "",
+    "text": "This post uses the player and tournament-result tables for Red Bull Wololo: Legacy 2022 – Age of Empires IV. It asks which countries were represented, what placements their players achieved, and how much prize money they received.\nThe code below is the initial working scaffold for the analysis. The two tables are kept separate until the join step so that the data relationship remains explicit.\n\nplayer_profiles &lt;- data.frame(\n  player_id = c(\"marinelord\", \"themista\", \"beastyqt\", \"lucifron\", \"1puppypaw\", \"iammagic\", \"leenock\", \"recon\", \"capoch\", \"demu\", \"theviper\", \"vortix\", \"hut\", \"kasva\", \"sortof\", \"wam01\"),\n  player_name = c(\"MarineLorD\", \"TheMista\", \"Beastyqt\", \"LucifroN\", \"1puppypaw\", \"IamMagic\", \"Leenock\", \"RecoN\", \"Capoch\", \"DeMu\", \"TheViper\", \"VortiX\", \"HuT\", \"Kasva\", \"SortOf\", \"Wam01\"),\n  country = c(\"France\", \"Greece\", \"Serbia\", \"Spain\", \"Canada\", \"Canada\", \"Korea, Republic of\", \"United Kingdom\", \"Argentina\", \"United Kingdom\", \"Norway\", \"Spain\", \"Australia\", \"Turkey\", \"Sweden\", \"Canada\"),\n  stringsAsFactors = FALSE\n)\n\ntournament_results &lt;- data.frame(\n  player_id = player_profiles$player_id,\n  placement = c(\"1st\", \"2nd\", \"3rd-4th\", \"3rd-4th\", \"5th-8th\", \"5th-8th\", \"5th-8th\", \"5th-8th\", \"9th-12th\", \"9th-12th\", \"9th-12th\", \"9th-12th\", \"13th-16th\", \"13th-16th\", \"13th-16th\", \"13th-16th\"),\n  prize_usd = c(100000, 50000, 20000, 20000, 12500, 12500, 12500, 12500, 9000, 9000, 9000, 9000, 6000, 6000, 6000, 6000)\n)\n\nhead(player_profiles)\n\n   player_id player_name country\n1 marinelord  MarineLorD  France\n2   themista    TheMista  Greece\n3   beastyqt    Beastyqt  Serbia\n4   lucifron    LucifroN   Spain\n5  1puppypaw   1puppypaw  Canada\n6   iammagic    IamMagic  Canada"
+  },
+  {
+    "objectID": "posts/aoe4-r/index.html#data-and-questions",
+    "href": "posts/aoe4-r/index.html#data-and-questions",
+    "title": "Age of Empires IV: Tournament Results by Country",
+    "section": "",
+    "text": "This post uses the player and tournament-result tables for Red Bull Wololo: Legacy 2022 – Age of Empires IV. It asks which countries were represented, what placements their players achieved, and how much prize money they received.\nThe code below is the initial working scaffold for the analysis. The two tables are kept separate until the join step so that the data relationship remains explicit.\n\nplayer_profiles &lt;- data.frame(\n  player_id = c(\"marinelord\", \"themista\", \"beastyqt\", \"lucifron\", \"1puppypaw\", \"iammagic\", \"leenock\", \"recon\", \"capoch\", \"demu\", \"theviper\", \"vortix\", \"hut\", \"kasva\", \"sortof\", \"wam01\"),\n  player_name = c(\"MarineLorD\", \"TheMista\", \"Beastyqt\", \"LucifroN\", \"1puppypaw\", \"IamMagic\", \"Leenock\", \"RecoN\", \"Capoch\", \"DeMu\", \"TheViper\", \"VortiX\", \"HuT\", \"Kasva\", \"SortOf\", \"Wam01\"),\n  country = c(\"France\", \"Greece\", \"Serbia\", \"Spain\", \"Canada\", \"Canada\", \"Korea, Republic of\", \"United Kingdom\", \"Argentina\", \"United Kingdom\", \"Norway\", \"Spain\", \"Australia\", \"Turkey\", \"Sweden\", \"Canada\"),\n  stringsAsFactors = FALSE\n)\n\ntournament_results &lt;- data.frame(\n  player_id = player_profiles$player_id,\n  placement = c(\"1st\", \"2nd\", \"3rd-4th\", \"3rd-4th\", \"5th-8th\", \"5th-8th\", \"5th-8th\", \"5th-8th\", \"9th-12th\", \"9th-12th\", \"9th-12th\", \"9th-12th\", \"13th-16th\", \"13th-16th\", \"13th-16th\", \"13th-16th\"),\n  prize_usd = c(100000, 50000, 20000, 20000, 12500, 12500, 12500, 12500, 9000, 9000, 9000, 9000, 6000, 6000, 6000, 6000)\n)\n\nhead(player_profiles)\n\n   player_id player_name country\n1 marinelord  MarineLorD  France\n2   themista    TheMista  Greece\n3   beastyqt    Beastyqt  Serbia\n4   lucifron    LucifroN   Spain\n5  1puppypaw   1puppypaw  Canada\n6   iammagic    IamMagic  Canada"
+  },
+  {
+    "objectID": "posts/aoe4-r/index.html#joining-and-summarising-the-tables",
+    "href": "posts/aoe4-r/index.html#joining-and-summarising-the-tables",
+    "title": "Age of Empires IV: Tournament Results by Country",
+    "section": "Joining and summarising the tables",
+    "text": "Joining and summarising the tables\n\njoined_results &lt;- merge(tournament_results, player_profiles, by = \"player_id\")\ncountry_summary &lt;- aggregate(\n  prize_usd ~ country,\n  data = joined_results,\n  FUN = sum\n)\ncountry_summary$players &lt;- as.integer(\n  table(joined_results$country)[country_summary$country]\n)\ncountry_summary &lt;- country_summary[, c(\"country\", \"players\", \"prize_usd\")]\n\ncountry_summary[order(-country_summary$players), ]\n\n              country players prize_usd\n3              Canada       3     31000\n9               Spain       2     29000\n12     United Kingdom       2     21500\n1           Argentina       1      9000\n2           Australia       1      6000\n4              France       1    100000\n5              Greece       1     50000\n6  Korea, Republic of       1     12500\n7              Norway       1      9000\n8              Serbia       1     20000\n10             Sweden       1      6000\n11             Turkey       1      6000\n\n\nThe joined table connects each player to a country, placement, and prize amount. The country summary provides the first answer to the three project questions: representation, placements, and prize money."
+  },
+  {
+    "objectID": "posts/aoe4-r/index.html#prize-money-by-country",
+    "href": "posts/aoe4-r/index.html#prize-money-by-country",
+    "title": "Age of Empires IV: Tournament Results by Country",
+    "section": "Prize money by country",
+    "text": "Prize money by country\n\nbarplot(\n  country_summary$prize_usd,\n  names.arg = country_summary$country,\n  las = 2,\n  cex.names = 0.7,\n  ylab = \"Prize money (USD)\",\n  main = \"AoE4 prize money by country\"\n)\n\n\n\n\n\n\n\nFigure 1: Prize money awarded to players from each country."
+  },
+  {
+    "objectID": "posts/aoe4-python/index.html",
+    "href": "posts/aoe4-python/index.html",
+    "title": "Age of Empires IV: Tournament Results by Country",
+    "section": "",
+    "text": "This post uses the player and tournament-result tables for Red Bull Wololo: Legacy 2022 – Age of Empires IV. It asks which countries were represented, what placements their players achieved, and how much prize money they received.\nThe code below is the initial working scaffold for the analysis. The two tables are kept separate until the merge step so that the data relationship remains explicit.\n\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\nplayer_profiles = pd.DataFrame({\n    \"player_id\": [\"marinelord\", \"themista\", \"beastyqt\", \"lucifron\", \"1puppypaw\", \"iammagic\", \"leenock\", \"recon\", \"capoch\", \"demu\", \"theviper\", \"vortix\", \"hut\", \"kasva\", \"sortof\", \"wam01\"],\n    \"player_name\": [\"MarineLorD\", \"TheMista\", \"Beastyqt\", \"LucifroN\", \"1puppypaw\", \"IamMagic\", \"Leenock\", \"RecoN\", \"Capoch\", \"DeMu\", \"TheViper\", \"VortiX\", \"HuT\", \"Kasva\", \"SortOf\", \"Wam01\"],\n    \"country\": [\"France\", \"Greece\", \"Serbia\", \"Spain\", \"Canada\", \"Canada\", \"Korea, Republic of\", \"United Kingdom\", \"Argentina\", \"United Kingdom\", \"Norway\", \"Spain\", \"Australia\", \"Turkey\", \"Sweden\", \"Canada\"],\n})\n\ntournament_results = pd.DataFrame({\n    \"player_id\": player_profiles[\"player_id\"],\n    \"placement\": [\"1st\", \"2nd\", \"3rd-4th\", \"3rd-4th\", \"5th-8th\", \"5th-8th\", \"5th-8th\", \"5th-8th\", \"9th-12th\", \"9th-12th\", \"9th-12th\", \"9th-12th\", \"13th-16th\", \"13th-16th\", \"13th-16th\", \"13th-16th\"],\n    \"prize_usd\": [100000, 50000, 20000, 20000, 12500, 12500, 12500, 12500, 9000, 9000, 9000, 9000, 6000, 6000, 6000, 6000],\n})\n\nplayer_profiles.head()\n\n\n\n\n\n\n\n\nplayer_id\nplayer_name\ncountry\n\n\n\n\n0\nmarinelord\nMarineLorD\nFrance\n\n\n1\nthemista\nTheMista\nGreece\n\n\n2\nbeastyqt\nBeastyqt\nSerbia\n\n\n3\nlucifron\nLucifroN\nSpain\n\n\n4\n1puppypaw\n1puppypaw\nCanada"
+  },
+  {
+    "objectID": "posts/aoe4-python/index.html#data-and-questions",
+    "href": "posts/aoe4-python/index.html#data-and-questions",
+    "title": "Age of Empires IV: Tournament Results by Country",
+    "section": "",
+    "text": "This post uses the player and tournament-result tables for Red Bull Wololo: Legacy 2022 – Age of Empires IV. It asks which countries were represented, what placements their players achieved, and how much prize money they received.\nThe code below is the initial working scaffold for the analysis. The two tables are kept separate until the merge step so that the data relationship remains explicit.\n\nimport matplotlib.pyplot as plt\nimport pandas as pd\n\nplayer_profiles = pd.DataFrame({\n    \"player_id\": [\"marinelord\", \"themista\", \"beastyqt\", \"lucifron\", \"1puppypaw\", \"iammagic\", \"leenock\", \"recon\", \"capoch\", \"demu\", \"theviper\", \"vortix\", \"hut\", \"kasva\", \"sortof\", \"wam01\"],\n    \"player_name\": [\"MarineLorD\", \"TheMista\", \"Beastyqt\", \"LucifroN\", \"1puppypaw\", \"IamMagic\", \"Leenock\", \"RecoN\", \"Capoch\", \"DeMu\", \"TheViper\", \"VortiX\", \"HuT\", \"Kasva\", \"SortOf\", \"Wam01\"],\n    \"country\": [\"France\", \"Greece\", \"Serbia\", \"Spain\", \"Canada\", \"Canada\", \"Korea, Republic of\", \"United Kingdom\", \"Argentina\", \"United Kingdom\", \"Norway\", \"Spain\", \"Australia\", \"Turkey\", \"Sweden\", \"Canada\"],\n})\n\ntournament_results = pd.DataFrame({\n    \"player_id\": player_profiles[\"player_id\"],\n    \"placement\": [\"1st\", \"2nd\", \"3rd-4th\", \"3rd-4th\", \"5th-8th\", \"5th-8th\", \"5th-8th\", \"5th-8th\", \"9th-12th\", \"9th-12th\", \"9th-12th\", \"9th-12th\", \"13th-16th\", \"13th-16th\", \"13th-16th\", \"13th-16th\"],\n    \"prize_usd\": [100000, 50000, 20000, 20000, 12500, 12500, 12500, 12500, 9000, 9000, 9000, 9000, 6000, 6000, 6000, 6000],\n})\n\nplayer_profiles.head()\n\n\n\n\n\n\n\n\nplayer_id\nplayer_name\ncountry\n\n\n\n\n0\nmarinelord\nMarineLorD\nFrance\n\n\n1\nthemista\nTheMista\nGreece\n\n\n2\nbeastyqt\nBeastyqt\nSerbia\n\n\n3\nlucifron\nLucifroN\nSpain\n\n\n4\n1puppypaw\n1puppypaw\nCanada"
+  },
+  {
+    "objectID": "posts/aoe4-python/index.html#joining-and-summarising-the-tables",
+    "href": "posts/aoe4-python/index.html#joining-and-summarising-the-tables",
+    "title": "Age of Empires IV: Tournament Results by Country",
+    "section": "Joining and summarising the tables",
+    "text": "Joining and summarising the tables\n\njoined_results = tournament_results.merge(player_profiles, on=\"player_id\", validate=\"one_to_one\")\ncountry_summary = (\n    joined_results.groupby(\"country\", as_index=False)\n    .agg(players=(\"player_id\", \"count\"), total_prize_usd=(\"prize_usd\", \"sum\"))\n    .sort_values([\"players\", \"total_prize_usd\"], ascending=False)\n)\n\ncountry_summary\n\n\n\n\n\n\n\n\ncountry\nplayers\ntotal_prize_usd\n\n\n\n\n2\nCanada\n3\n31000\n\n\n8\nSpain\n2\n29000\n\n\n11\nUnited Kingdom\n2\n21500\n\n\n3\nFrance\n1\n100000\n\n\n4\nGreece\n1\n50000\n\n\n7\nSerbia\n1\n20000\n\n\n5\nKorea, Republic of\n1\n12500\n\n\n0\nArgentina\n1\n9000\n\n\n6\nNorway\n1\n9000\n\n\n1\nAustralia\n1\n6000\n\n\n9\nSweden\n1\n6000\n\n\n10\nTurkey\n1\n6000\n\n\n\n\n\n\n\nThe merged table connects each player to a country, placement, and prize amount. The country summary provides the first answer to the three project questions: representation, placements, and prize money."
+  },
+  {
+    "objectID": "posts/aoe4-python/index.html#prize-money-by-country",
+    "href": "posts/aoe4-python/index.html#prize-money-by-country",
+    "title": "Age of Empires IV: Tournament Results by Country",
+    "section": "Prize money by country",
+    "text": "Prize money by country\n\nax = country_summary.plot.bar(\n    x=\"country\",\n    y=\"total_prize_usd\",\n    legend=False,\n    rot=75,\n    ylabel=\"Prize money (USD)\",\n    title=\"AoE4 prize money by country\",\n    figsize=(8, 4),\n)\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\nFigure 1: Prize money awarded to players from each country."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Yi Zhang",
+    "section": "",
+    "text": "I’m Yi Zhang, a Master of Data Science student at the University of British Columbia. Before MDS I studied computer science and worked in software. I’m here to learn how to turn data into insight, and I hope to build a career in data science.\nOutside of class, I like to play rhythm games."
   }
 ]

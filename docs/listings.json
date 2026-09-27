@@ -2,6 +2,8 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/aoe4-r/index.html",
+      "/posts/aoe4-python/index.html",
       "/posts/blog0.html"
     ]
   }
