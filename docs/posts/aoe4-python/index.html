@@ -206,24 +206,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-and-questions" class="level2">
 <h2 class="anchored" data-anchor-id="data-and-questions">Data and questions</h2>
 <p>This post uses the player and tournament-result tables for <a href="https://www.esportsearnings.com/tournaments/56552-red-bull-wololo-legacy-2022-age-of-empires-iv">Red Bull Wololo: Legacy 2022 – Age of Empires IV</a>. It asks which countries were represented, what placements their players achieved, and how much prize money they received.</p>
-<p>The code below is the initial working scaffold for the analysis. The two tables are kept separate until the merge step so that the data relationship remains explicit.</p>
+<p>The CSV files are stored in the repository’s <code>data/</code> directory. The two tables are kept separate until the merge step so that the data relationship remains explicit.</p>
 <div id="cell-setup-data" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>player_profiles <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"player_id"</span>: [<span class="st">"marinelord"</span>, <span class="st">"themista"</span>, <span class="st">"beastyqt"</span>, <span class="st">"lucifron"</span>, <span class="st">"1puppypaw"</span>, <span class="st">"iammagic"</span>, <span class="st">"leenock"</span>, <span class="st">"recon"</span>, <span class="st">"capoch"</span>, <span class="st">"demu"</span>, <span class="st">"theviper"</span>, <span class="st">"vortix"</span>, <span class="st">"hut"</span>, <span class="st">"kasva"</span>, <span class="st">"sortof"</span>, <span class="st">"wam01"</span>],</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"player_name"</span>: [<span class="st">"MarineLorD"</span>, <span class="st">"TheMista"</span>, <span class="st">"Beastyqt"</span>, <span class="st">"LucifroN"</span>, <span class="st">"1puppypaw"</span>, <span class="st">"IamMagic"</span>, <span class="st">"Leenock"</span>, <span class="st">"RecoN"</span>, <span class="st">"Capoch"</span>, <span class="st">"DeMu"</span>, <span class="st">"TheViper"</span>, <span class="st">"VortiX"</span>, <span class="st">"HuT"</span>, <span class="st">"Kasva"</span>, <span class="st">"SortOf"</span>, <span class="st">"Wam01"</span>],</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"country"</span>: [<span class="st">"France"</span>, <span class="st">"Greece"</span>, <span class="st">"Serbia"</span>, <span class="st">"Spain"</span>, <span class="st">"Canada"</span>, <span class="st">"Canada"</span>, <span class="st">"Korea, Republic of"</span>, <span class="st">"United Kingdom"</span>, <span class="st">"Argentina"</span>, <span class="st">"United Kingdom"</span>, <span class="st">"Norway"</span>, <span class="st">"Spain"</span>, <span class="st">"Australia"</span>, <span class="st">"Turkey"</span>, <span class="st">"Sweden"</span>, <span class="st">"Canada"</span>],</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tournament_results <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"player_id"</span>: player_profiles[<span class="st">"player_id"</span>],</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"placement"</span>: [<span class="st">"1st"</span>, <span class="st">"2nd"</span>, <span class="st">"3rd-4th"</span>, <span class="st">"3rd-4th"</span>, <span class="st">"5th-8th"</span>, <span class="st">"5th-8th"</span>, <span class="st">"5th-8th"</span>, <span class="st">"5th-8th"</span>, <span class="st">"9th-12th"</span>, <span class="st">"9th-12th"</span>, <span class="st">"9th-12th"</span>, <span class="st">"9th-12th"</span>, <span class="st">"13th-16th"</span>, <span class="st">"13th-16th"</span>, <span class="st">"13th-16th"</span>, <span class="st">"13th-16th"</span>],</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"prize_usd"</span>: [<span class="dv">100000</span>, <span class="dv">50000</span>, <span class="dv">20000</span>, <span class="dv">20000</span>, <span class="dv">12500</span>, <span class="dv">12500</span>, <span class="dv">12500</span>, <span class="dv">12500</span>, <span class="dv">9000</span>, <span class="dv">9000</span>, <span class="dv">9000</span>, <span class="dv">9000</span>, <span class="dv">6000</span>, <span class="dv">6000</span>, <span class="dv">6000</span>, <span class="dv">6000</span>],</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>player_profiles.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>player_profiles <span class="op">=</span> pd.read_csv(<span class="st">"../../data/player_profiles.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>tournament_results <span class="op">=</span> pd.read_csv(<span class="st">"../../data/tournament_results.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>player_profiles.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="setup-data" class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
@@ -284,8 +275,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    .agg(players<span class="op">=</span>(<span class="st">"player_id"</span>, <span class="st">"count"</span>), total_prize_usd<span class="op">=</span>(<span class="st">"prize_usd"</span>, <span class="st">"sum"</span>))</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    .sort_values([<span class="st">"players"</span>, <span class="st">"total_prize_usd"</span>], ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>country_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>placement_by_country <span class="op">=</span> pd.crosstab(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    joined_results[<span class="st">"country"</span>],</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    joined_results[<span class="st">"placement"</span>],</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(country_summary.to_string(index<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>placement_by_country</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           country  players  total_prize_usd
+            Canada        3            31000
+             Spain        2            29000
+    United Kingdom        2            21500
+            France        1           100000
+            Greece        1            50000
+            Serbia        1            20000
+Korea, Republic of        1            12500
+         Argentina        1             9000
+            Norway        1             9000
+         Australia        1             6000
+            Sweden        1             6000
+            Turkey        1             6000</code></pre>
+</div>
 <div id="joined-summary" class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
@@ -293,84 +304,132 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">placement</th>
+<th data-quarto-table-cell-role="th">13th-16th</th>
+<th data-quarto-table-cell-role="th">1st</th>
+<th data-quarto-table-cell-role="th">2nd</th>
+<th data-quarto-table-cell-role="th">3rd-4th</th>
+<th data-quarto-table-cell-role="th">5th-8th</th>
+<th data-quarto-table-cell-role="th">9th-12th</th>
+</tr>
+<tr class="even">
 <th data-quarto-table-cell-role="th">country</th>
-<th data-quarto-table-cell-role="th">players</th>
-<th data-quarto-table-cell-role="th">total_prize_usd</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">2</th>
-<td>Canada</td>
-<td>3</td>
-<td>31000</td>
+<th data-quarto-table-cell-role="th">Argentina</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">8</th>
-<td>Spain</td>
+<th data-quarto-table-cell-role="th">Australia</th>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Canada</th>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 <td>2</td>
-<td>29000</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">11</th>
-<td>United Kingdom</td>
-<td>2</td>
-<td>21500</td>
+<td>0</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">3</th>
-<td>France</td>
+<th data-quarto-table-cell-role="th">France</th>
+<td>0</td>
 <td>1</td>
-<td>100000</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">4</th>
-<td>Greece</td>
+<th data-quarto-table-cell-role="th">Greece</th>
+<td>0</td>
+<td>0</td>
 <td>1</td>
-<td>50000</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">7</th>
-<td>Serbia</td>
+<th data-quarto-table-cell-role="th">Korea, Republic of</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 <td>1</td>
-<td>20000</td>
+<td>0</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">5</th>
-<td>Korea, Republic of</td>
+<th data-quarto-table-cell-role="th">Norway</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 <td>1</td>
-<td>12500</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">0</th>
-<td>Argentina</td>
+<th data-quarto-table-cell-role="th">Serbia</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 <td>1</td>
-<td>9000</td>
+<td>0</td>
+<td>0</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">6</th>
-<td>Norway</td>
+<th data-quarto-table-cell-role="th">Spain</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 <td>1</td>
-<td>9000</td>
+<td>0</td>
+<td>1</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">1</th>
-<td>Australia</td>
+<th data-quarto-table-cell-role="th">Sweden</th>
 <td>1</td>
-<td>6000</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 </tr>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">9</th>
-<td>Sweden</td>
+<th data-quarto-table-cell-role="th">Turkey</th>
 <td>1</td>
-<td>6000</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 </tr>
 <tr class="even">
-<th data-quarto-table-cell-role="th">10</th>
-<td>Turkey</td>
+<th data-quarto-table-cell-role="th">United Kingdom</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
 <td>1</td>
-<td>6000</td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
@@ -383,17 +442,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="prize-money-by-country" class="level2">
 <h2 class="anchored" data-anchor-id="prize-money-by-country">Prize money by country</h2>
 <div id="cell-fig-python-prize-by-country" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> country_summary.plot.bar(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"country"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"total_prize_usd"</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    rot<span class="op">=</span><span class="dv">75</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">"Prize money (USD)"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"AoE4 prize money by country"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> country_summary.plot.bar(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">"country"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">"total_prize_usd"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    rot<span class="op">=</span><span class="dv">75</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">"Prize money (USD)"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"AoE4 prize money by country"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="fig-python-prize-by-country" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">

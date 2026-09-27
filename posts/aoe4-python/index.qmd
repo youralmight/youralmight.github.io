@@ -10,7 +10,7 @@ format: html
 
 This post uses the player and tournament-result tables for [Red Bull Wololo: Legacy 2022 – Age of Empires IV](https://www.esportsearnings.com/tournaments/56552-red-bull-wololo-legacy-2022-age-of-empires-iv). It asks which countries were represented, what placements their players achieved, and how much prize money they received.
 
-The code below is the initial working scaffold for the analysis. The two tables are kept separate until the merge step so that the data relationship remains explicit.
+The CSV files are stored in the repository's `data/` directory. The two tables are kept separate until the merge step so that the data relationship remains explicit.
 
 ```{python}
 #| label: setup-data
@@ -19,17 +19,8 @@ The code below is the initial working scaffold for the analysis. The two tables 
 import matplotlib.pyplot as plt
 import pandas as pd
 
-player_profiles = pd.DataFrame({
-    "player_id": ["marinelord", "themista", "beastyqt", "lucifron", "1puppypaw", "iammagic", "leenock", "recon", "capoch", "demu", "theviper", "vortix", "hut", "kasva", "sortof", "wam01"],
-    "player_name": ["MarineLorD", "TheMista", "Beastyqt", "LucifroN", "1puppypaw", "IamMagic", "Leenock", "RecoN", "Capoch", "DeMu", "TheViper", "VortiX", "HuT", "Kasva", "SortOf", "Wam01"],
-    "country": ["France", "Greece", "Serbia", "Spain", "Canada", "Canada", "Korea, Republic of", "United Kingdom", "Argentina", "United Kingdom", "Norway", "Spain", "Australia", "Turkey", "Sweden", "Canada"],
-})
-
-tournament_results = pd.DataFrame({
-    "player_id": player_profiles["player_id"],
-    "placement": ["1st", "2nd", "3rd-4th", "3rd-4th", "5th-8th", "5th-8th", "5th-8th", "5th-8th", "9th-12th", "9th-12th", "9th-12th", "9th-12th", "13th-16th", "13th-16th", "13th-16th", "13th-16th"],
-    "prize_usd": [100000, 50000, 20000, 20000, 12500, 12500, 12500, 12500, 9000, 9000, 9000, 9000, 6000, 6000, 6000, 6000],
-})
+player_profiles = pd.read_csv("../../data/player_profiles.csv")
+tournament_results = pd.read_csv("../../data/tournament_results.csv")
 
 player_profiles.head()
 ```
@@ -45,8 +36,13 @@ country_summary = (
     .agg(players=("player_id", "count"), total_prize_usd=("prize_usd", "sum"))
     .sort_values(["players", "total_prize_usd"], ascending=False)
 )
+placement_by_country = pd.crosstab(
+    joined_results["country"],
+    joined_results["placement"],
+)
 
-country_summary
+print(country_summary.to_string(index=False))
+placement_by_country
 ```
 
 The merged table connects each player to a country, placement, and prize amount. The country summary provides the first answer to the three project questions: representation, placements, and prize money.
