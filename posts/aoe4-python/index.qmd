@@ -10,6 +10,8 @@ format: html
 
 This post uses the player and tournament-result tables for [Red Bull Wololo: Legacy 2022 – Age of Empires IV](https://www.esportsearnings.com/tournaments/56552-red-bull-wololo-legacy-2022-age-of-empires-iv). It asks which countries were represented, what placements their players achieved, and how much prize money they received.
 
+The source's [Website Terms of Use](https://www.esportsearnings.com/terms-of-use) grant permission to use the site's materials for personal and commercial use. This post uses only attributed tabular facts and does not reproduce site images, logos, or trademarks.
+
 The CSV files are stored in the repository's `data/` directory. The two tables are kept separate until the merge step so that the data relationship remains explicit.
 
 ```{python}

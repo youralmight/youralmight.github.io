@@ -40,6 +40,8 @@ The two CSV files in `data/` are:
 
 The data are based on the [Esports Earnings page for Red Bull Wololo: Legacy 2022 – Age of Empires IV](https://www.esportsearnings.com/tournaments/56552-red-bull-wololo-legacy-2022-age-of-empires-iv). The source link is also included in both posts. The CSV files are committed locally, so rendering does not need network access to download the data.
 
+The source's [Website Terms of Use](https://www.esportsearnings.com/terms-of-use) grant permission to use its materials for personal and commercial use. This repository contains only a small attributed extract of tabular facts and no source images, logos, or trademarks.
+
 ## GitHub Pages
 
 GitHub Pages publishes the `docs/` directory from the `main` branch. After changing a QMD file or the data:

@@ -4,7 +4,18 @@
     "items": [
       "/posts/aoe4-r/index.html",
       "/posts/aoe4-python/index.html",
-      "/posts/blog0.html"
+      "/tmp/runs/20260926-aoe4-scaffold/clean-clone/posts/aoe4-r/index.html",
+      "/tmp/runs/20260926-aoe4-scaffold/clean-clone/posts/aoe4-python/index.html",
+      "/posts/blog0.html",
+      "/tmp/runs/20260926-aoe4-scaffold/clean-clone/posts/blog0.html"
+    ]
+  },
+  {
+    "listing": "/tmp/runs/20260926-aoe4-scaffold/clean-clone/blog.html",
+    "items": [
+      "/tmp/runs/20260926-aoe4-scaffold/clean-clone/posts/aoe4-r/index.html",
+      "/tmp/runs/20260926-aoe4-scaffold/clean-clone/posts/aoe4-python/index.html",
+      "/tmp/runs/20260926-aoe4-scaffold/clean-clone/posts/blog0.html"
     ]
   }
 ]
